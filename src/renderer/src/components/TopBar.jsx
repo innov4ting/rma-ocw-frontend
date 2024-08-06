@@ -18,9 +18,6 @@ export default function TopBar() {
     <div>
       <div className='bg-blue-400 rounded-t-xl w-screen h-5' style={{WebkitAppRegion:"drag"}}></div>
       <div className='bg-blue-400 w-screen h-3' ></div>
-
-      <div><h1>Control de ordenes de trabajo</h1></div>
-
       <div id='control-buttons' className='text-stone-200 absolute top-1 right-0 pe-2'>
         <button id='minimize' className='p-1' onClick={handleMinimize}>&#128469;</button>
         <button id='close' className='p-1' onClick={handleClose}>&#x2715;</button>
