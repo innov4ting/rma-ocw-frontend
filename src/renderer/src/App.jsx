@@ -1,36 +1,96 @@
-import Versions from './components/Versions'
-import electronLogo from './assets/electron.svg'
+import { Outlet, useNavigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import TopBar from './components/TopBar'
-import { Button } from '@mui/material';
+import Header from './components/Header';
+import DashboardIcon from './assets/icons/dashboard_icon.svg';
+import OrdersIcon from './assets/icons/orders_icon.svg'
+import Dashboard from './pages/dashboard/Dashboard';
 import Orders from './pages/orders/Orders';
 
+import NewOrder from './pages/orders/NewOrder';
+import Process from './pages/orders/Process';
+import CutMaterial from './pages/orders/CutMaterial';
 
-function App() {
-  // const ipcHandle = () => window.electron.ipcRenderer.send('ping')
+function AppContent() {
+  const navigate = useNavigate();
 
-  
+  const goToDashboard = () => {
+    navigate('dashboard')
+  }
 
+  const goToOrders = () => {
+    navigate('orders')
+  }
 
   return (
-
     <>
-    <TopBar></TopBar>
-    <div>
-    <h1>My Electron App</h1>
-    <div className='flex flex-row flex-auto justify-center'>
-      <h1 className='text-lg'>Talle de torno</h1>
-      <h2> Control de Ordenes de Trabajo</h2>
-    </div>
-    <Button onClick={() => navigate('/dashboard')}>Go to Dashboard</Button>
-    <Button onClick={() => navigate('/orders')}>Go to Orders</Button>
-    <Orders></Orders>
+      <TopBar></TopBar>
+      <Header></Header>
+      
+      <div className='flex justify-center py-8 space-x-10 ' >
+        <button 
+        className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-2xl"  
+        onClick={goToOrders}>
+          {/* Go Orders  */}
+          <img src={OrdersIcon} alt="orders" className="w-60 h-60 filter-white"/>
+        </button> 
 
-    </div>
+        <button 
+        className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-2xl"
+        onClick={goToDashboard}>
+          {/* Go to Cut Dashboard */}
+          <img src={DashboardIcon} alt="dashboard" className="w-60 h-60 filter-white"/>
+        </button>
+      </div>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <>
+      <Outlet/>
+      <BrowserRouter>
+        <Routes>
+          <Route
+              exact
+              path='/'
+              element={<AppContent/>}
+              />
+          <Route
+              path='/orders'
+              element={<Orders/>}
+              >
+              <Route
+                exact
+                path='neworder'
+                element={<NewOrder/>}
+                />
+              <Route
+                exact
+                path='process'
+                element={<Process/>}
+                />
+              <Route
+                exact
+                path='cutmaterial'
+                element={<CutMaterial/>}
+                />
+                
+          </Route>
+          <Route
+              exact
+              path='/dashboard'
+              element={<Dashboard/>}
+              />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
 
 export default App
-
-
-

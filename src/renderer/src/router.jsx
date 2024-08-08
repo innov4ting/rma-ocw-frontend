@@ -1,5 +1,9 @@
-import React from "react";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { Outlet, useNavigate } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import App from "./App";
 import Dashboard from "./pages/dashboard";
 import Orders from "./pages/orders";
@@ -7,20 +11,29 @@ import Orders from "./pages/orders";
 
 
 const AppRouter = () => {
-  
-    return (
-        <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/orders" element={<Orders />} />
-        </Routes>
-    );
+  <>
+    <Outlet/>
+    <BrowserRouter>
+      <Routes>
+        <Route
+            exact
+            path='/'
+            element={<AppContent/>}
+            />
+        <Route
+            exact
+            path='/orders'
+            element={<Orders/>}
+            />
+        <Route
+            exact
+            path='/dashboard'
+            element={<Dashboard/>}
+            />
+      </Routes>
+    </BrowserRouter>
+  </>
   };
 
-  // Exportar las rutas
-export const routes = {
-    dashboard: '/dashboard',
-    orders: '/orders'
-  };
 
 export default AppRouter;

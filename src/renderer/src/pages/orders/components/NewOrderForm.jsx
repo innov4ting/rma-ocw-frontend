@@ -251,18 +251,12 @@ export default function NewOrderForm() {
                     </Grid>
                   </Grid>
                 </FormGroup>
-                {/* <FormHelperText error={Object.values(errors).some(error => error !== '')}>
-                  {Object.values(errors).some(error => error !== '') && "Please correct the errors above."}
-                </FormHelperText> */}
-                {/* <Button type="submit" variant="contained" color="primary" sx={{ mt: 3 }}>
-                  Submit
-                </Button> */}
               </FormControl>
             </Box>
           </body>
           <footer className='flex justify-end items-center gap-4'>
             <Button variant="outlined" onClick={handleClose}>Cancelar</Button>
-            <Button ype="submit" variant="contained" color="primary" onClick={handleSubmit}>Crear</Button>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>Crear</Button>
           </footer>
         </Box>
       </Modal>

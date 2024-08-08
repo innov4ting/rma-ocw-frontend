@@ -1,7 +1,12 @@
-import Dashboard from './dashboard';
+import Dashboard from "./Dashboard";
 
-export default {
-  path: '/dashboard',
-  name: 'Dashboard',
-  element: <Dashboard />,
-};
+export default [
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    element: <Dashboard />,
+    Children: [
+      
+    ]
+  }
+]
