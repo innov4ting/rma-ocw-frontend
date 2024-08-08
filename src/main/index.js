@@ -18,7 +18,6 @@ function createWindow() {
       sandbox: false
     }
 
-    // open dev tools
   })
 
   mainWindow.setAlwaysOnTop(true, "screen");
@@ -71,6 +70,13 @@ app.whenReady().then(() => {
       currentWindow.minimize()
     }
   })
+
+  ipcMain.on("maximize-window", () => {
+    const currentWindow = BrowserWindow.getFocusedWindow();
+    if (currentWindow) {
+      currentWindow.maximize();
+    }
+  });
 
   createWindow()
 

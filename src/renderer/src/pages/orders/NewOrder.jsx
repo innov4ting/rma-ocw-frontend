@@ -4,14 +4,14 @@ import NewOrderForm from './components/NewOrderForm'
 import CompleteForm from './components/CompletedForm'
 import { useState } from 'react'
 
-export default function Process() {
+export default function NewOrder() {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(true);
   return (
     <>
-    <h1>Hola process</h1>
+    <h1>Hola nuevas ordenes</h1>
       <div className='flex flex-row flex-auto justify-evenly items-center'>
         <NewOrderForm open={open} onClose={handleClose}></NewOrderForm>
         <CompleteForm open={open} onClose={handleClose}></CompleteForm>

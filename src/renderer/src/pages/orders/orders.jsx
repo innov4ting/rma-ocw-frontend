@@ -1,73 +1,83 @@
 import React from 'react'
-import StickyHeadTable from './components/StickyHeadTable'
-import NewOrderForm from './components/NewOrderForm'
-import CompleteForm from './components/CompletedForm'
-// import { Outlet, useNavigate } from 'react-router-dom';
-// import CutMaterial from './CutMaterial';
-// import Process from './Process';
-// import {
-//   BrowserRouter,
-//   Routes,
-//   Route,
-// } from "react-router-dom";
+import { useNavigate, Outlet } from 'react-router-dom'
+import TopBar from '../../components/TopBar';
+import Header from '../../components/Header';
+import ReturnButton from '../../components/ReturnButton';
+import NewOrder from './NewOrder'
 
-
-import { Button } from '@mui/material'
-
-import { useState } from 'react'
+import { Button } from '@mui/material';
 
 export default function Orders() {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // const goToCutMaterial = () => {
-  //   navigate('cutmaterial')
-  // }
+  const handleToNewOrder = () => {
+    navigate ('neworder')
+  };
 
-  // const goToProcess = () => {
-  //   navigate('process')
-  // }
+  const handleToProcess = () => {
+    navigate ('process')
+  };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(true);
+  const handleToCutMaterial = () => {
+    navigate ('cutmaterial')
+  };
+
   return (
     <>
-    <div className='flex flex-row flex-auto justify-evenly items-center'>
+      <TopBar></TopBar>
+      <Header></Header>
+      <div className="w-full  flex items-center justify-center">
+        <div className=' w-[98%] h-8 rounded-t-lg' >
+          <div className='flex px-2'>
+            <ReturnButton></ReturnButton>
+            <div className='px-4'>
+              <Button 
+              sx={{
+                  backgroundColor:"#1976d2", 
+                  color:"white", 
+                  margin:"0 4px",
+                  '&:hover': { 
+                    backgroundColor:"white", 
+                    color:"#1976d2", 
+                    border:"1px solid #1976d2"
+                  }}}
+                  onClick={handleToNewOrder}
+              >
+                Orders
+              </Button>
+              <Button 
+                sx={{
+                    backgroundColor:"yellow", 
+                    color:"black", 
+                    margin:"0 4px", 
+                    border:"1px solid black",
 
-      <NewOrderForm open={open} onClose={handleClose}></NewOrderForm>
-      <CompleteForm open={open} onClose={handleClose}></CompleteForm>
-
-      {/* <button onClick={goToCutMaterial}>Go to Cut Material</button>
-      <button onClick={goToProcess}>Go Process</button> */}
-      
-    </div>
-    <div className='flex flex-row flex-auto py-2'>
-      <StickyHeadTable></StickyHeadTable>
-    </div>
-    {/* <Outlet/> */}
-
-    {/* <BrowserRouter>
-                <Routes>
-                    <Route
-                        exact
-                        path="/"
-                        element={<CutMaterial />}
-                    />
-                    <Route
-                        exact
-                        path="/process"
-                        element={<Process />}
-                    />
-                    <Route
-                        exact
-                        path="/cutmaterial"
-                        element={<CutMaterial />}
-                    />
-                </Routes>
-      </BrowserRouter> */}
-    
+                    }}
+              onClick={handleToProcess}
+              >
+                Process
+              </Button>
+              <Button 
+                sx={{
+                  backgroundColor:"red", 
+                  color:"white", 
+                  margin:"0 4px",
+                  '&:hover': { 
+                    backgroundColor:"white", 
+                    color:"red", 
+                    border:"1px solid red"
+                  }}}
+                  onClick={handleToCutMaterial}
+              >
+                Cut Material
+              </Button>
+            </div>
+          </div >
+          {/* <NewOrder></NewOrder> */}
+        </div>
+      </div>
+      <Outlet/>
     </>
-
-  );
+  )
 }
